@@ -1,0 +1,13 @@
+/* CSS Document */
+
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.starter-template ul {list-style-type:none; text-align:left}
+
+li.header{font-size:1.7em; margin-left:25px;padding-top:25px;}; 
