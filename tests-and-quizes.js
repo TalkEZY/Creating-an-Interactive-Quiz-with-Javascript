@@ -1,17 +1,17 @@
-$.TalkEZY = {
+$.DoubleJetski = {
     init: function (){
 		if ($(".questions .question0").length > 0) {
-			$.TalkEZY.Quiz.init();
+			$.DoubleJetski.Quiz.init();
 		}
 	}
 };
 
 $(document).ready(function () {
-	$.TalkEZY.init();
+	$.DoubleJetski.init();
 });
 
 
-$.TalkEZY.Quiz = {
+$.DoubleJetski.Quiz = {
 	_score: 0,
 	_tempScore: 100,
 	_labelScore: [],
@@ -25,14 +25,14 @@ $.TalkEZY.Quiz = {
 			test = storage[0],
 			question = storage[1],
 			answer = storage[2];
-			test == quiz._quizID && ($.TalkEZY.Quiz._currentQuestion = question, $.TalkEZY.Quiz._labelScore = $.TalkEZY.Quiz._score = answer);
+			test == quiz._quizID && ($.DoubleJetski.Quiz._currentQuestion = question, $.DoubleJetski.Quiz._labelScore = $.DoubleJetski.Quiz._score = answer);
 		} else {
 			sessionStorage.setItem("quiz", 0); 
 		}
 
 		if ("label" == quiz._quizType) {
 			for (var i = resultsData.length, r = 0; i > r; r++){
-				$.TalkEZY.Quiz._labelScore.push(0);
+				$.DoubleJetski.Quiz._labelScore.push(0);
 			}
         }
 		
@@ -49,9 +49,9 @@ $.TalkEZY.Quiz = {
 	},
 	
 	_showQuestion: function (questionNumber) {
-        if ($.TalkEZY.Quiz._currentQuestion == quiz._totalQuestions) {                     
-            $.TalkEZY.Quiz._currentQuestion = 0,      
-            $.TalkEZY.Quiz._showResults();
+        if ($.DoubleJetski.Quiz._currentQuestion == quiz._totalQuestions) {                     
+            $.DoubleJetski.Quiz._currentQuestion = 0,      
+            $.DoubleJetski.Quiz._showResults();
         }
         else
         {
@@ -63,7 +63,7 @@ $.TalkEZY.Quiz = {
             possibleAnswer = $(targetAnswer),
             i = this._getCorrectAnswer(possibleAnswer);
 			
-        if ($.TalkEZY.Quiz._currentQuestion == quiz._totalQuestions - 1) { 
+        if ($.DoubleJetski.Quiz._currentQuestion == quiz._totalQuestions - 1) { 
             $(target).find(".btn").html("show results");
         } else {
             $(target).find(".btn").html("next question");
@@ -120,8 +120,8 @@ $.TalkEZY.Quiz = {
                         "none" == o.find(".answerText").css("display") ? (o.find(".answerText").slideDown(), f.addClass("learnmoreopen").removeClass("learnmoreclose")) : (o.find(".answerText").slideUp(), f.addClass("learnmoreclose").removeClass("learnmoreopen"), "nvp" == bzDetect.viewport && $("html, body").animate({
                             scrollTop: o.find(".correctAnswer").offset().top
                         }, 800));
-                    }), $.TalkEZY.Quiz._tempScore = l.data("points"), c.removeClass("lightgray"), c.addClass("color-solid-teal-long"), c.click(function () {
-                        $.TalkEZY.Quiz._showNextQuestion();
+                    }), $.DoubleJetski.Quiz._tempScore = l.data("points"), c.removeClass("lightgray"), c.addClass("color-solid-teal-long"), c.click(function () {
+                        $.DoubleJetski.Quiz._showNextQuestion();
                     });
                 } else if ("points" == quiz._quizType) {
                     l.find(".checkbox").addClass("correct"), l.find(".choice").css("font-weight", "bold");
@@ -132,8 +132,8 @@ $.TalkEZY.Quiz = {
 							p.find(".checkbox").addClass("inactive"),
 							p.find("img").fadeTo("1000", 0.33);
                         }
-                    $.TalkEZY.Quiz._tempScore = l.data("points"), setTimeout(function () {
-                        $.TalkEZY.Quiz._showNextQuestion();
+                    $.DoubleJetski.Quiz._tempScore = l.data("points"), setTimeout(function () {
+                        $.DoubleJetski.Quiz._showNextQuestion();
                     }, 1e3);
                 } else if ("label" == quiz._quizType) {
                     l.find(".checkbox").addClass("correct"), l.find(".choice").css("font-weight", "bold");
@@ -142,8 +142,8 @@ $.TalkEZY.Quiz = {
                             var p = o.find(" .answer" + d);
                             p.find(".choice").fadeTo("1000", 0.33), p.find(".checkbox").addClass("inactive");
                         }
-                    $.TalkEZY.Quiz._tempLabelID = l.data("resultid"), setTimeout(function () {
-                        $.TalkEZY.Quiz._showNextQuestion();
+                    $.DoubleJetski.Quiz._tempLabelID = l.data("resultid"), setTimeout(function () {
+                        $.DoubleJetski.Quiz._showNextQuestion();
                     }, 1e3);
                 }
             }
@@ -151,7 +151,7 @@ $.TalkEZY.Quiz = {
     },
 	
 	_showNextQuestion: function () {
-		$.TalkEZY.Quiz._scoreQuestion();
+		$.DoubleJetski.Quiz._scoreQuestion();
 		
 		if (this._currentQuestion >= quiz._totalQuestions - 1){
 			(this._showResults(), void 0);
@@ -160,7 +160,7 @@ $.TalkEZY.Quiz = {
 			this._showQuestion(this._currentQuestion);
 		
 			$("html, body").animate({
-				scrollTop: $(".questions").offset().top - $.TalkEZY.Quiz._headerOffset
+				scrollTop: $(".questions").offset().top - $.DoubleJetski.Quiz._headerOffset
 			}, 800), 
 			// return result undefined
 			void 0;
@@ -168,29 +168,29 @@ $.TalkEZY.Quiz = {
 	},
     
 	_scoreQuestion: function () {
-        if ("test" == quiz._quizType && 100 != $.TalkEZY.Quiz._tempScore){
-			$.TalkEZY.Quiz._score += $.TalkEZY.Quiz._tempScore;
-		} else if ("points" == quiz._quizType && 100 != $.TalkEZY.Quiz._tempScore){
-			$.TalkEZY.Quiz._score += $.TalkEZY.Quiz._tempScore;
-		} else if ("label" == quiz._quizType && 100 != $.TalkEZY.Quiz._tempLabelID){
-			$.TalkEZY.Quiz._labelScore[$.TalkEZY.Quiz._tempLabelID] += 1;
+        if ("test" == quiz._quizType && 100 != $.DoubleJetski.Quiz._tempScore){
+			$.DoubleJetski.Quiz._score += $.DoubleJetski.Quiz._tempScore;
+		} else if ("points" == quiz._quizType && 100 != $.DoubleJetski.Quiz._tempScore){
+			$.DoubleJetski.Quiz._score += $.DoubleJetski.Quiz._tempScore;
+		} else if ("label" == quiz._quizType && 100 != $.DoubleJetski.Quiz._tempLabelID){
+			$.DoubleJetski.Quiz._labelScore[$.DoubleJetski.Quiz._tempLabelID] += 1;
 		}
 		
         var storage = [];
 		
         storage.push(quiz._quizID), 
-		storage.push($.TalkEZY.Quiz._currentQuestion + 1);
+		storage.push($.DoubleJetski.Quiz._currentQuestion + 1);
 		
 		if ("label" == quiz._quizType){
-			storage.push($.TalkEZY.Quiz._labelScore);
+			storage.push($.DoubleJetski.Quiz._labelScore);
 		} else {
-			storage.push($.TalkEZY.Quiz._score);
+			storage.push($.DoubleJetski.Quiz._score);
 		}
 		
 		storage = JSON.stringify(storage), 
 		sessionStorage.setItem("quiz", storage), 
-		$.TalkEZY.Quiz._tempScore = 100, 
-		$.TalkEZY.Quiz._tempLabelID = 100;
+		$.DoubleJetski.Quiz._tempScore = 100, 
+		$.DoubleJetski.Quiz._tempLabelID = 100;
     },
 	
 	_showResults: function () {
@@ -209,13 +209,13 @@ $.TalkEZY.Quiz = {
         var a, i, r = resultsData.length;
         
         if ("test" == quiz._quizType) {
-            var o = $.TalkEZY.Quiz._score + "/" + quiz._totalQuestions;
+            var o = $.DoubleJetski.Quiz._score + "/" + quiz._totalQuestions;
             
             title.html(o), 
             n.html("answered correctly").addClass("answeredCorrectly");
             
             for (var s = r - 1, limitPosition = 0; r > limitPosition; limitPosition++){
-                if ($.TalkEZY.Quiz._score <= resultsData[limitPosition].limit) {
+                if ($.DoubleJetski.Quiz._score <= resultsData[limitPosition].limit) {
                     s = limitPosition;
                     break;
                 }
@@ -228,7 +228,7 @@ $.TalkEZY.Quiz = {
             title.html("Your Results!"), n.html(c).addClass("answeredCorrectly");
             
             for (var s = r - 1, l = 0; r > l; l++){
-                if ($.TalkEZY.Quiz._score <= resultsData[l].limit) {
+                if ($.DoubleJetski.Quiz._score <= resultsData[l].limit) {
 					// first available answer is found so set it
                     s = l;
 					a = resultsData[s].title, 
@@ -242,8 +242,8 @@ $.TalkEZY.Quiz = {
             t.html("Your Results!"), n.html(c).addClass("answeredCorrectly");
             
             for (var u = 100, d = 0, l = 0; r > l; l++) {
-				if ($.TalkEZY.Quiz._labelScore[l] > d){
-					 d = $.TalkEZY.Quiz._labelScore[l], 
+				if ($.DoubleJetski.Quiz._labelScore[l] > d){
+					 d = $.DoubleJetski.Quiz._labelScore[l], 
 					 u = l;
 				}
 				
@@ -254,9 +254,9 @@ $.TalkEZY.Quiz = {
         
         $(".resultsSection .resultTitle").html(a), 
         $(".resultsSection .resultDescription").html(i),
-        $.TalkEZY.Quiz._setUpResultSharing(), 
+        $.DoubleJetski.Quiz._setUpResultSharing(), 
         $("html, body").animate({
-            scrollTop: $(".detail.quiz").offset().top - $.TalkEZY.Quiz._headerOffset
+            scrollTop: $(".detail.quiz").offset().top - $.DoubleJetski.Quiz._headerOffset
         }, 800), e.fadeOut({
             complete: function () {
                 title.fadeIn({
@@ -265,7 +265,7 @@ $.TalkEZY.Quiz = {
                             complete: function () {
                                 $(".results").fadeIn({
 									complete: (function (){
-										$.TalkEZY.Quiz._displayGauge($.TalkEZY.Quiz._score);
+										$.DoubleJetski.Quiz._displayGauge($.DoubleJetski.Quiz._score);
 									})
 								});
                             }
@@ -275,7 +275,7 @@ $.TalkEZY.Quiz = {
             }
         }); ////,  sessionStorage.removeItem("quiz")
 		
-		$(".btn.retakeQuiz").on('click', $.TalkEZY.Quiz._retakeQuiz());
+		$(".btn.retakeQuiz").on('click', $.DoubleJetski.Quiz._retakeQuiz());
     },
 	
 	_setUpResultSharing: function () {
@@ -284,20 +284,20 @@ $.TalkEZY.Quiz = {
 			e.each(function () {
             	var e = "",
                 	t = encodeURIComponent($(".detail.quiz .content-header .introText").html()),
-                	n = encodeURIComponent("http://www.talkezy.com/images/am-i-gay-quiz-logo-600x305.png"),
+                	n = encodeURIComponent("http://www.DoubleJetski.com/images/am-i-gay-quiz-logo-600x305.png"),
                 	a = encodeURIComponent(document.location.href);
 					
 					if ("test" == quiz._quizType){
-						e = encodeURIComponent("TalkEZY Quiz: I answered " + $(".detail.quiz h1").html() + " questions correctly.");
+						e = encodeURIComponent("DoubleJetski Quiz: I answered " + $(".detail.quiz h1").html() + " questions correctly.");
 					} else if ("points" == quiz._quizType) {
-						e = encodeURIComponent("TalkEZY Quiz: " + $.TalkEZY.Quiz._stripHTML($(".resultsSection .resultTitle").html())),
-						t = $.TalkEZY.Quiz._stripHTML($(".resultsSection .resultDescription").html());
+						e = encodeURIComponent("DoubleJetski Quiz: " + $.DoubleJetski.Quiz._stripHTML($(".resultsSection .resultTitle").html())),
+						t = $.DoubleJetski.Quiz._stripHTML($(".resultsSection .resultDescription").html());
 					} else if ("label" == quiz._quizType) {
-						e = encodeURIComponent("TalkEZY Quiz: " + $.TalkEZY.Quiz._stripHTML($(".resultsSection .resultTitle").html())), 
-						t = $.TalkEZY.Quiz._stripHTML($(".resultsSection .resultDescription").html());
+						e = encodeURIComponent("DoubleJetski Quiz: " + $.DoubleJetski.Quiz._stripHTML($(".resultsSection .resultTitle").html())), 
+						t = $.DoubleJetski.Quiz._stripHTML($(".resultsSection .resultDescription").html());
 					}
 					
-            	var i = "https://www.facebook.com/dialog/feed?app_id=366971830031872&link=" + a + "&name=TalkEZY.com:%20" + e + "&picture=" + n + "&description=" + t + "&redirect_uri=http://www.facebook.com",
+            	var i = "https://www.facebook.com/dialog/feed?app_id=366971830031872&link=" + a + "&name=DoubleJetski.com:%20" + e + "&picture=" + n + "&description=" + t + "&redirect_uri=http://www.facebook.com",
                 r = '<a href="' + i + '" class="btn medium lightgray fb" target="_blank"><i class="icon-fbshare"></i>Share Results</a>';
 				
 ////				<a href="#" onclick="shareResults()">Share Results</a>
@@ -354,7 +354,7 @@ $.TalkEZY.Quiz = {
 	
 	_displayGauge: function(score)	{
 		var target = document.getElementById('speedometerGauge'), // your canvas element
-		gauge = new Gauge(target).setOptions($.TalkEZY.Quiz._speedometerGauge.ops); // create sexy gauge!
+		gauge = new Gauge(target).setOptions($.DoubleJetski.Quiz._speedometerGauge.ops); // create sexy gauge!
 		
 		gauge.maxValue = quiz._maxScore ; // set max gauge value
 		gauge.animationSpeed = 80; // set animation speed (32 is default value)
