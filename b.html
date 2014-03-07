@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- Custom styles for this template -->
+    <link href="css/starter-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Quiz Demo</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="a.html">A. Test / Quiz</a></li>
+            <li><a href="b.html">B. Points Based</a></li>
+            <li><a href="c.html">C. Label Based</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Cumulative points</h1>
+<div class="detail quiz">
+    <a name="topOfPage"></a>
+    <h2>Do you watch too much TV? Test</h2>
+    <div class="introText">
+    </div>
+    <div class="questions">
+    <a name="topOfQuiz"></a>
+    <div class="question0 quizQuestions">
+        <h5 align="right">Question 1 of 3</h5>
+        <h4>How many days a week do you watch TV?</h4><p></p>
+        <ul class="row">
+            <li class="col-xs-6 col-sm-4 quiz_answer answer0" data-points="1" data-resultid="0"><img class="img-responsive" src="img/img1.jpg"  alt=""/><span class="checkbox"></span></li>
+            <li class="col-xs-6 col-sm-4 quiz_answer answer1" data-points="2" data-resultid="0"><img class="img-responsive" src="img/img2.jpg"  alt=""/><span class="checkbox"></span></li>
+            <li class="col-xs-6 col-sm-4 quiz_answer answer2" data-points="3" data-resultid="0"><img class="img-responsive" src="img/img3.jpg" alt=""/><span class="checkbox"></span></li>
+        </ul>
+        <ul class="row">
+            <li class="col-xs-6 col-sm-4 quiz_answer answer3" data-points="4" data-resultid="0"><img class="img-responsive"  src="img/img4.jpg" width="400" height="600" alt=""/><span class="checkbox"></span></li>
+            <li class="col-xs-6 col-sm-4 quiz_answer answer4" data-points="5" data-resultid="0"><img class="img-responsive"  src="img/img5.jpg" width="400" height="600" alt=""/><span class="checkbox"></span></li>
+            <li class="col-xs-6 col-sm-4 quiz_answer answer5" data-points="6" data-resultid="0"><img class="img-responsive"  src="img/img6.jpg" width="400" height="600" alt=""/><span class="checkbox"></span></li>
+        </ul>
+    </div>
+    
+    <!-- question 2 -->
+    <div class="question1 quizQuestions">
+        <h5 align="right">Question 2 of 3</h5>
+        <h4>How many hours a day?</h4>
+        <p>(Oh, and just for fun, refresh the browswer, we've save your answer until you close the tab or finish the test.)</p>
+        <ul class="row-fluid">
+            <li class="quiz_answer answer0" data-points="2" data-resultid="0"><span class="checkbox"></span>Less than 2 hours</li>
+            <li class="quiz_answer answer1" data-points="4" data-resultid="0"><span class="checkbox"></span>4 hours or less</li>
+            <li class="quiz_answer answer2" data-points="8" data-resultid="0"><span class="checkbox"></span>Over 4 hours</li>
+        </ul>
+    </div>
+</div>
+
+    <!-- question 3 -->
+    <div class="question2 quizQuestions">
+        <h5 align="right">Question 3 of 3</h5>
+        <h4>How many hours or recorded programming do you have on your DVR?</h4>
+        <ul class="row">
+            <li class="quiz_answer answer0" data-points="6" data-resultid="0"><span class="checkbox"></span>Less than 6 hours</li>
+                <li class="quiz_answer answer1" data-points="20" data-resultid="0"><span class="checkbox"></span>20 hours or less</li>
+                <li class="quiz_answer answer2" data-points="40" data-resultid="0"><span class="checkbox"></span>Over 20 hours</li>
+            </ul>
+        </div>
+    </div>
+
+	<div class="results">
+        <div class="resultsSection row">
+        <div class="resultTitle"></div>
+        <div class="resultDescription"></div>
+        <div class="shareresults"></div>
+        <div class=""><a class="retakeQuiz" href="b.html">retake test</a></div>
+        </div>
+        <p><!-- /resutls --></p>
+        </div>
+        <p><!-- /questions --></p>
+    </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script>
+		var resultsData = [{
+
+        "title": "It seems like you're not watching enough TV!",
+
+        "desc": "We suggest maybe getting a subscription to <a href='http://www.netflix.com' target='_blank'>NETFLIX</a>.",
+
+        "limit": 13
+
+    }, {
+
+        "title": "Awesome, you're watching a healthy amount of TV!",
+
+        "desc": "lKeep on doing the great job!",
+
+        "limit": 20
+
+    }, {
+
+        "title": "It looks like you're watching too much TV!",
+
+        "desc": "Try visiting your local <b>library</b>, too much TV can cause the Kardashian syndrome.",
+
+        "limit": 32
+
+    }, {
+
+        "title": "OUCH! You watch too much TV.",
+
+        "desc": "I hope you're a television producer, because you watch too much TV!",
+
+        "limit": 47
+
+    }];
+
+    var quiz = {
+        _totalQuestions: 3,
+		_maxScore:54,
+        _quizType: 'points',
+        _quizID: 2
+    };
+	</script>
+    
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  <script src="js/tests-and-quizes.js"></script>
+  </body>
+</html>

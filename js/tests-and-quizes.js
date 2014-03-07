@@ -52,9 +52,7 @@ $.DoubleJetski.Quiz = {
         if ($.DoubleJetski.Quiz._currentQuestion == quiz._totalQuestions) {                     
             $.DoubleJetski.Quiz._currentQuestion = 0,      
             $.DoubleJetski.Quiz._showResults();
-        }
-        else
-        {
+        } else {
             this.alreadyClicked = !1;
         }
         
@@ -70,10 +68,16 @@ $.DoubleJetski.Quiz = {
         }
         
         for (var r = 0; possibleAnswer.length > r; r++) {
+			 //// To track images & checkboxes
             var cssAnswerObject = targetAnswer + ".answer" + r + " img",
-                selectedAnswer = $(cssAnswerObject);
-            this._setupAnswerEvents(selectedAnswer, r, possibleAnswer[r], i, possibleAnswer);
+                selectedAnswer = $(cssAnswerObject),
+				 cssAnswerCheck = targetAnswer + ".answer" + r + " .checkbox",
+			 	 selectedAnswerCheck = $(cssAnswerCheck);
+				
+            this._setupAnswerEvents(selectedAnswer, r, possibleAnswer[r], i, possibleAnswer); 
+			 this._setupAnswerEvents(selectedAnswerCheck, r, possibleAnswer[r], i, possibleAnswer);
         }
+		
         if (questionNumber > 0) {
             var l = ".question" + (1 * questionNumber - 1);
             $(l).fadeOut({
@@ -87,7 +91,9 @@ $.DoubleJetski.Quiz = {
                     });
                 }
             });
-        } else $(target).fadeIn();
+        } else {
+			$(target).fadeIn();
+		}
     },
     
     _setupAnswerEvents: function (e, test, question, answer, i) {
@@ -195,14 +201,13 @@ $.DoubleJetski.Quiz = {
 	
 	_showResults: function () {
         var e = $(".question" + this._currentQuestion),
-            title = $(".detail.quiz h1");
+            title = $(".detail.quiz h2");
         
         title.css("display", "none");
         
         var n = $(".detail.quiz .introText");
         
         n.css("display", "none"), 
-        $(".byline").css("display", "none"), 
         $(".detail.quiz .content-header").addClass("showResults"),
         $(".sharebar").css("display", "none");
         
@@ -223,7 +228,7 @@ $.DoubleJetski.Quiz = {
 				i = resultsData[s].desc;
             }
         } else if ("points" == quiz._quizType) {
-            var c = $(".detail.quiz .content-header h1").html();
+            var c = $(".detail.quiz h2").html();
             
             title.html("Your Results!"), n.html(c).addClass("answeredCorrectly");
             
@@ -283,8 +288,8 @@ $.DoubleJetski.Quiz = {
 		if (e.length > 0){
 			e.each(function () {
             	var e = "",
-                	t = encodeURIComponent($(".detail.quiz .content-header .introText").html()),
-                	n = encodeURIComponent("http://www.DoubleJetski.com/images/am-i-gay-quiz-logo-600x305.png"),
+                	t = encodeURIComponent($(".detail.quiz .introText").html()),
+                	n = encodeURIComponent("http://www.DoubleJetski.com/images/img.png"),
                 	a = encodeURIComponent(document.location.href);
 					
 					if ("test" == quiz._quizType){
@@ -297,8 +302,8 @@ $.DoubleJetski.Quiz = {
 						t = $.DoubleJetski.Quiz._stripHTML($(".resultsSection .resultDescription").html());
 					}
 					
-            	var i = "https://www.facebook.com/dialog/feed?app_id=366971830031872&link=" + a + "&name=DoubleJetski.com:%20" + e + "&picture=" + n + "&description=" + t + "&redirect_uri=http://www.facebook.com",
-                r = '<a href="' + i + '" class="btn medium lightgray fb" target="_blank"><i class="icon-fbshare"></i>Share Results</a>';
+            	var i = "https://www.facebook.com/dialog/feed?app_id=106480999390924&link=" + a + "&name=DoubleJetski.com:%20" + e + "&picture=" + n + "&description=" + t + "&redirect_uri=http://www.facebook.com",
+                r = '<a href="' + i + '" class="btn medium lightgray fb" target="_blank"><i class="icon-fbshare"></i>Share Results on Facebook </br>(note this will pass full results, doesn\'t work on localhost)</a>';
 				
 ////				<a href="#" onclick="shareResults()">Share Results</a>
 ////					function shareResults() {
@@ -352,12 +357,16 @@ $.DoubleJetski.Quiz = {
 		};
 	},
 	
-	_displayGauge: function(score)	{
-		var target = document.getElementById('speedometerGauge'), // your canvas element
-		gauge = new Gauge(target).setOptions($.DoubleJetski.Quiz._speedometerGauge.ops); // create sexy gauge!
+	_displayGauge: function(score) {
+		var target = document.getElementById('speedometerGauge');
+		// your canvas element
+		
+		if (target != null) {
+			gauge = new Gauge(target).setOptions($.DoubleJetski.Quiz._speedometerGauge.ops); // create sexy gauge!
 		
 		gauge.maxValue = quiz._maxScore ; // set max gauge value
 		gauge.animationSpeed = 80; // set animation speed (32 is default value)
 		gauge.set(score); // set actual value
+		}
 	}       
 };

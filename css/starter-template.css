@@ -9,5 +9,95 @@ body {
 }
 
 .starter-template ul {list-style-type:none; text-align:left}
+	li.header{font-size:1.7em; margin-left:25px;padding-top:25px;}; 
 
-li.header{font-size:1.7em; margin-left:25px;padding-top:25px;}; 
+/*  --------------------------------------------------
+    QUIZ & TESTS
+    -------------------------------------------------- */
+
+.starter-template div.introText.answeredCorrectly{ font-size: 1.7em; color:#0093C4}
+
+.questions .quiz_answer{
+	position:relative;
+}
+
+.quiz_answer img{ 
+	cursor: pointer;
+}
+
+.quiz_answer img:hover{
+	opacity:0.75;
+}
+
+.checkbox {
+	border-radius: 10px;
+	height: 3em;
+	width: 3em;
+	display: inline-block;
+	/* float: left; */
+	margin: 5px 15px 0 0;
+	border: #737373 solid 2px;
+	background: beige;
+	cursor: pointer;
+	position:relative;
+	top:15px;
+}
+
+img ~ .checkbox {
+	border-radius: 10px;
+	height: 3em;
+	height: calc(20%);
+	width: 3em;
+	width: calc(30%);
+	display: inline-block;
+	/* float: left; */
+	margin: 5px 15px 0 0;
+	border: #0A91AB solid 2px;
+	background: beige;
+	cursor: pointer;
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
+}
+
+.questions .checkbox.correct {
+	border-color: #9ed045;
+	background-color: #9ed045;
+	background-image: url('../img/answer-correct-check.svg');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 70% auto;
+	cursor: default;
+}
+
+.questions .checkbox.inactive {
+	border-color: #888888;
+	background-color: #D0D0D0;
+	cursor: default;
+}
+
+.quizQuestions{
+	display:none;
+}
+.quizQuestions > ul {
+	margin:15px 0;
+}
+
+.detail.quiz .results {
+	display: none;
+}
+
+#speedometerGauge{
+	float:left;
+}
+
+.icon-fbshare {
+	background-position: 0 0;
+	background-image: url("../img/facebook20x20.svg");
+	height: 20px;
+	width: 20px;
+}
+
+.results{display:none;}
+
+
