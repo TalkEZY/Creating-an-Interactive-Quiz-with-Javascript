@@ -35,11 +35,6 @@ $.DoubleJetski.Quiz = {
 				$.DoubleJetski.Quiz._labelScore.push(0);
 			}
         }
-		
-		// pass the check box event to parent
-		$(".checkbox").click(function() {
-        	$(this).siblings('img').click();
-    	});
 
 		this._showQuestion(this._currentQuestion);
 	},
@@ -50,7 +45,7 @@ $.DoubleJetski.Quiz = {
 	
 	_showQuestion: function (questionNumber) {
         if ($.DoubleJetski.Quiz._currentQuestion == quiz._totalQuestions) {                     
-            $.DoubleJetski.Quiz._currentQuestion = 0,      
+            $.DoubleJetski.Quiz._currentQuestion = 0,   
             $.DoubleJetski.Quiz._showResults();
         } else {
             this.alreadyClicked = !1;
@@ -68,14 +63,14 @@ $.DoubleJetski.Quiz = {
         }
         
         for (var r = 0; possibleAnswer.length > r; r++) {
-			 //// To track images & checkboxes
-            var cssAnswerObject = targetAnswer + ".answer" + r + " img",
+			//// To track images & checkboxes
+           var cssAnswerObject = targetAnswer + ".answer" + r + " img",
                 selectedAnswer = $(cssAnswerObject),
 				 cssAnswerCheck = targetAnswer + ".answer" + r + " .checkbox",
 			 	 selectedAnswerCheck = $(cssAnswerCheck);
 				
-            this._setupAnswerEvents(selectedAnswer, r, possibleAnswer[r], i, possibleAnswer); 
-			 this._setupAnswerEvents(selectedAnswerCheck, r, possibleAnswer[r], i, possibleAnswer);
+			this._setupAnswerEvents(selectedAnswer, r, possibleAnswer[r], i, possibleAnswer); 
+			this._setupAnswerEvents(selectedAnswerCheck, r, possibleAnswer[r], i, possibleAnswer);
         }
 		
         if (questionNumber > 0) {
@@ -105,52 +100,86 @@ $.DoubleJetski.Quiz = {
                     s = $(".question" + r._currentQuestion + " .answer" + answer),
                     l = $(e).parent(),
                     c = $(o).find(".btn");
-                if ("test" == quiz._quizType) {
-                    if (i[answer] != question) {
-                        var u = o.find(".answerStatus");
-                        u.html("Sorry, but that was wrong. Try again!"), u.addClass("wrong"), l.find(".checkbox").addClass("wrong"), $(i[a]).find(".checkbox").addClass("corrected"), l.find(".choice").addClass("wrong");
-                    } else {
-                        var u = o.find(".answerStatus");
-                        l.find(".checkbox").addClass("correct"), u.html("correct!"), u.addClass("correct");
-                    }
-                    for (var d = 0; i.length > d; d++)
+					
+               if ("test" == quiz._quizType) {
+                	if (i[answer] != question) {
+                       var u = o.find(".answerStatus");
+                      u.html("Sorry, but that was wrong. Try again!"), 
+						u.addClass("wrong"), 
+						l.find(".checkbox").addClass("wrong"), 
+						$(i[a]).find(".checkbox").addClass("corrected"), 
+						l.find(".choice").addClass("wrong");
+                  } else {
+                  	var u = o.find(".answerStatus");
+                      l.find(".checkbox").addClass("correct"), 
+						u.html("correct!"), 
+						u.addClass("correct");
+					}
+					
+              			for (var d = 0; i.length > d; d++){
                         if (d != answer && d != test) {
-                            var p = o.find(" .answer" + d);
-                            p.find(".choice").fadeTo("1000", 0.33), 
-							p.find(".checkbox").addClass("inactive"),
-							p.find("img").fadeTo("1000", 0.33);
+                            	var p = o.find(" .answer" + d);
+                            	p.find(".choice").fadeTo("1000", 0.33), 
+								p.find(".checkbox").addClass("inactive"),
+								p.find("img").fadeTo("1000", 0.33);
                         }
-                    s.find(".quizOptions").prepend('<div class="correctAnswer">The correct answer is:</div>'), o.find(".correctAnswer").fadeIn();
-                    var f = o.find(".learnmore");
-                    f.fadeIn(), f.click(function () {
-                        "none" == o.find(".answerText").css("display") ? (o.find(".answerText").slideDown(), f.addClass("learnmoreopen").removeClass("learnmoreclose")) : (o.find(".answerText").slideUp(), f.addClass("learnmoreclose").removeClass("learnmoreopen"), "nvp" == bzDetect.viewport && $("html, body").animate({
-                            scrollTop: o.find(".correctAnswer").offset().top
-                        }, 800));
-                    }), $.DoubleJetski.Quiz._tempScore = l.data("points"), c.removeClass("lightgray"), c.addClass("color-solid-teal-long"), c.click(function () {
+						}
+						
+                    	s.find(".quizOptions").prepend('<div class="correctAnswer">The correct answer is:</div>'), 
+						o.find(".correctAnswer").fadeIn();
+						
+                    	var f = o.find(".learnmore");
+                    	f.fadeIn(), 
+						f.click(function () {
+							if ("none" == o.find(".answerText").css("display")){
+								o.find(".answerText").slideDown(), 
+								f.addClass("learnmoreopen").removeClass("learnmoreclose");
+							} else {
+								o.find(".answerText").slideUp(), 
+								f.addClass("learnmoreclose").removeClass("learnmoreopen"); 
+								$("html, body").animate({
+                            		scrollTop: o.find(".correctAnswer").offset().top
+                        		}, 800);
+							};
+                    }), 
+					
+					$.DoubleJetski.Quiz._tempScore = l.data("points"), 
+					c.removeClass("lightgray"), 
+					c.addClass("color-solid-teal-long"), 
+					c.click(function () {
                         $.DoubleJetski.Quiz._showNextQuestion();
                     });
+					
                 } else if ("points" == quiz._quizType) {
-                    l.find(".checkbox").addClass("correct"), l.find(".choice").css("font-weight", "bold");
-                    for (var d = 0; i.length > d; d++)
-                        if (d != test) {
-                            var p = o.find(".answer" + d);
-                            p.find(".choice").fadeTo("1000", 0.33),
-							p.find(".checkbox").addClass("inactive"),
-							p.find("img").fadeTo("1000", 0.33);
-                        }
-                    $.DoubleJetski.Quiz._tempScore = l.data("points"), setTimeout(function () {
-                        $.DoubleJetski.Quiz._showNextQuestion();
-                    }, 1e3);
+                    	l.find(".checkbox").addClass("correct"), 
+						l.find(".choice").css("font-weight", "bold");
+						
+                    	for (var d = 0; i.length > d; d++){
+                        	if (d != test) {
+                            	var p = o.find(".answer" + d);
+                            	p.find(".choice").fadeTo("1000", 0.33),
+								p.find(".checkbox").addClass("inactive"),
+								p.find("img").fadeTo("1000", 0.33);
+
+							}
+						}
+						
+						$.DoubleJetski.Quiz._tempScore = l.data("points"), 
+						setTimeout(function () {
+							$.DoubleJetski.Quiz._showNextQuestion();
+						}, 1e3);
+						
                 } else if ("label" == quiz._quizType) {
                     l.find(".checkbox").addClass("correct"), l.find(".choice").css("font-weight", "bold");
-                    for (var d = 0; i.length > d; d++);
+                    for (var d = 0; i.length > d; d++){
                         if (d != t) {
                             var p = o.find(" .answer" + d);
                             p.find(".choice").fadeTo("1000", 0.33), p.find(".checkbox").addClass("inactive");
                         }
-                    $.DoubleJetski.Quiz._tempLabelID = l.data("resultid"), setTimeout(function () {
-                        $.DoubleJetski.Quiz._showNextQuestion();
-                    }, 1e3);
+                    		$.DoubleJetski.Quiz._tempLabelID = l.data("resultid"), setTimeout(function () {
+                        		$.DoubleJetski.Quiz._showNextQuestion();
+                    		}, 1e3);		
+					}
                 }
             }
         });
@@ -200,7 +229,7 @@ $.DoubleJetski.Quiz = {
     },
 	
 	_showResults: function () {
-        var e = $(".question" + this._currentQuestion),
+		var e = $(".question" + this._currentQuestion),
             title = $(".detail.quiz h2");
         
         title.css("display", "none");
@@ -230,21 +259,23 @@ $.DoubleJetski.Quiz = {
         } else if ("points" == quiz._quizType) {
             var c = $(".detail.quiz h2").html();
             
-            title.html("Your Results!"), n.html(c).addClass("answeredCorrectly");
+            	title.html("Your Results!"), 
+				n.html(c).addClass("answeredCorrectly");
             
             for (var s = r - 1, l = 0; r > l; l++){
                 if ($.DoubleJetski.Quiz._score <= resultsData[l].limit) {
 					// first available answer is found so set it
-                    s = l;
+                  s = l;
 					a = resultsData[s].title, 
 					i = resultsData[s].desc;	
-                    break;
+                 	break;
                 }
             }
         } else if ("label" == quiz._quizType) {
             var c = $(".detail.quiz .content-header h1").html();
             
-            t.html("Your Results!"), n.html(c).addClass("answeredCorrectly");
+            	title.html("Your Results!"), 
+				n.html(c).addClass("answeredCorrectly");
             
             for (var u = 100, d = 0, l = 0; r > l; l++) {
 				if ($.DoubleJetski.Quiz._labelScore[l] > d){
@@ -252,8 +283,8 @@ $.DoubleJetski.Quiz = {
 					 u = l;
 				}
 				
-            a = resultsData[u].title, 
-			i = resultsData[u].desc;
+            	a = resultsData[u].title, 
+				i = resultsData[u].desc;
             }
         }
         
